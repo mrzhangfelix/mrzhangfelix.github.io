@@ -1,37 +1,17 @@
-## Welcome to GitHub Pages
+<div align=center><img src="./img/admire220.png" width=220/></div>
 
-You can use the [editor on GitHub](https://github.com/mrzhangfelix/mrzhangfelix.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+</br>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<font size=6 style="font-weight:bold;">Hi</font>
 
-### Markdown
+</br>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<font size=6 style="font-weight:bold;">docsify是一个神奇的文档网站生成工具</font>
 
-```markdown
-Syntax highlighted code block
+</br>
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+</br></br></br>
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mrzhangfelix/mrzhangfelix.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+> Powered by [Docsify](https://docsify.js.org/#/zh-cn/).</br>
+> Last update: {docsify-updated}
