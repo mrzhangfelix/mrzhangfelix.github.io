@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>mrzhangfelix</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css">-->
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dolphin.css">-->
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css">-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css">
+<!--  <link rel="stylesheet" href="css/prism.css">-->
 </head>
 <body>
-ＨＯＬＬＥＷＯＲＬＤ
+  <div id="app"></div>
+  <script src="index.js"></script>
+  <script>
+    window.$docsify = {
+      name: 'mrzhangfelix',//文档标题，会显示在侧边栏顶部
+      loadSidebar: true,//加载自定义侧边栏
+      loadSidebar: '_sidebar.md',
+      autoHeader: true,//可以根据 _sidebar.md 的内容自动为每个页面增加标题
+      // basePath: '/doc/',//文档加载的根路径，可以是二级路径或者是其他域名的路径
+      auto2top: true, //切换页面后是否自动跳转到页面顶部
+      maxLevel: 4,//最大支持渲染的标题层级
+      subMaxLevel: 2,//生成目录的最大层级
+      logo: 'img/admire32.png' ,//在侧边栏中出现的网站图标
+      relativePath: true,//设为 true ，那么链接会使用相对路径
+      // homepage: 'README.md',
+      notFoundPage: true,//在找不到指定页面时my404.md
+      formatUpdated: '{YYYY}/{MM}/{DD}',
+      showLevel: true,
+      repo: 'https://github.com/mrzhangfelix',//右上角的标签
+      coverpage: true,
+      onlyCover: true,
+      themeColor: '#3F51B5',//替换主题色
+      // externalLinkTarget: '_blank', // '_self'//外部链接的打开方式。默认为 _blank
+      search: {
+        noData: "No Results!",
+        placeholder: 'Type to search',
+        // 搜索标题的最大程级, 1 - 6
+        // depth: 3
+      },
+      //定制默认的侧边栏,定义路由别名，可以更自由的定义路由规则。 支持正则
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/.*/README.md': '/README.md'
+      },
+      tabs: {
+        sync: false,
+      },
+      plugins: [
+        EditOnGithubPlugin.create('https://github.com/mrzhangfelix/mrzhangfelix.github.io/master/')
+      ],
+      count:{
+        countable:true,
+        fontsize:'0.9em',
+        color:'rgb(90,90,90)',
+        language:'chinese'
+      }
+    }
+
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<!--  分页插件-->
+<!--  <script src="js/docsify-pagination.min.js"></script>-->
+<!--  漂亮的警报-->
+<!--  <script src="js/docsify-plugin-flexible-alerts.js"></script>-->
+<!--  字数统计-->
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+  <!-- 复制到剪贴板 -->
+  <script src="//unpkg.com/docsify-copy-code"></script>
+<!--  Tab分标签-->
+<!--  <script src="js/docsify-tabs.js"></script>-->
+  <!--全文搜索,直接用官方提供的无法生效-->
+  <script src="https://cdn.bootcss.com/docsify/4.5.9/plugins/search.min.js"></script>
+  <!--python代码高亮-->
+  <script src="//unpkg.com/prismjs/components/prism-python.js"></script>
+  <!--Java代码高亮-->
+  <script src="//unpkg.com/prismjs/components/prism-java.js"></script>
+  <!-- 图片缩放 -->
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
 </body>
 </html>
