@@ -1,8 +1,8 @@
-* 代码
+* [代码](/doc/code/)
     * [常用算法](/doc/code/common)
     * [LeetCode]()
     
-* 开发工具
+* [开发工具](/doc/devtools/)
     1. Idea的使用
         * [快捷键](/doc/devtools/Idea/hotkeys)
         * [常用插件](/doc/devtools/Idea/plugin)
@@ -10,7 +10,7 @@
         * [常用插件](/doc/devtools/chrome/pulgin.md)
         * [自制油猴脚本](/doc/devtools/chrome/script.md)
             
-* 开发语言
+* [开发语言](/doc/devLanguage/)
     * [Markdown]()
         * [教程](/doc/devLanguage/markdown/start)
     * [Java]()
@@ -24,8 +24,8 @@
         * [常用工具包]()
         * [自制小工具]()
         
-* 常用框架
-    * [Spring]()
+* [常用框架](/doc/frame/)
+    * [Spring](/doc/frame/spring.md)
         * [基本概念]()
         * [依赖注入]()
         * [面向切面]()
@@ -47,14 +47,14 @@
         * [Spark SQL]()
         * [Spark Streaming]()
         
-* 三方服务
-    * [Redis]()
+* [三方服务](/doc/serve/)
+    * [Redis](/doc/serve/redis.md)
         * [基本概念]()
         * [常用命令]()
         * [常用技术]()
         * [应用]()
 
-* Linux
+* [Linux](/doc/linux/)
     * [概述]()
     * [常用命令](/doc/linux/cmd.md)
     * [shell]()
