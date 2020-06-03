@@ -1,4 +1,60 @@
-* [Markdown](/doc/markdown/start)
-    * [教程](/doc/markdown/start)
-* [Code](/doc/code/common)
+* 代码
     * [常用算法](/doc/code/common)
+    * [LeetCode]()
+    
+* 开发工具
+    1. Idea的使用
+        * [快捷键](/doc/devtools/Idea/hotkeys)
+        * [常用插件](/doc/devtools/Idea/plugin)
+    2. Chrome的使用
+        * [常用插件](/doc/devtools/chrome/pulgin.md)
+        * [自制油猴脚本](/doc/devtools/chrome/script.md)
+            
+* 开发语言
+    * [Markdown]()
+        * [教程](/doc/devLanguage/markdown/start)
+    * [Java]()
+        * [常用方法](/doc/devLanguage/java/methods.md)
+        * [易错知识点]()
+        * [常用工具类](/doc/devLanguage/java/Utils.md)
+        * [多线程]()
+        * [jvm]()
+        * [设计模式]()    
+    * [Python]()
+        * [常用工具包]()
+        * [自制小工具]()
+        
+* 常用框架
+    * [Spring]()
+        * [基本概念]()
+        * [依赖注入]()
+        * [面向切面]()
+        * [Spring高级]()
+    * [Springboot]()
+        * [基本概念]()
+        * [实践]()
+    * [Mybatis]()
+        * [基本概念]()
+        * [配置]()
+        * [映射器]()
+        * [运行原理和插件]()
+    * [Spark]()
+        * [概述]()
+        * [编程模型]()
+        * [核心原理]()
+        * [存储原理]()
+        * [运行架构]()
+        * [Spark SQL]()
+        * [Spark Streaming]()
+        
+* 三方服务
+    * [Redis]()
+        * [基本概念]()
+        * [常用命令]()
+        * [常用技术]()
+        * [应用]()
+
+* Linux
+    * [概述]()
+    * [常用命令](/doc/linux/cmd.md)
+    * [shell]()
