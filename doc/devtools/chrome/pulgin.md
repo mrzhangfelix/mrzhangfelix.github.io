@@ -16,6 +16,12 @@
 ## json-viewer 
 json返回值格式化显示
 
+## Watchlist
+监控页面元素的变化
+
+## Multi-highlight
+页面多个字符串高亮
+
 # 快捷键
 1. Ctrl+N 打开新窗口
 
