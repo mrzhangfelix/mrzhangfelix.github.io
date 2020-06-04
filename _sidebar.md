@@ -25,7 +25,7 @@
         * [自制小工具]()
         
 * [常用框架](/doc/frame/)
-    * [Spring](/doc/frame/spring.md)
+    * [Spring](/doc/frame/spring/spring.md)
         * [基本概念]()
         * [依赖注入]()
         * [面向切面]()
@@ -47,8 +47,8 @@
         * [Spark SQL]()
         * [Spark Streaming]()
         
-* [三方服务](/doc/serve/)
-    * [Redis](/doc/serve/redis.md)
+* [三方服务](/doc/server/)
+    * [Redis](/doc/server/redis.md)
         * [基本概念]()
         * [常用命令]()
         * [常用技术]()

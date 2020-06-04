@@ -1,17 +1,3 @@
-<div align=center><img src="./img/admire.png" width=220/></div>
+<div align=center><img src="../../img/admire.png" width=220/></div>
 
-</br>
-
-<font size=6 style="font-weight:bold;">Hi</font>
-
-</br>
-
-<font size=6 style="font-weight:bold;">docsify是一个神奇的文档网站生成工具</font>
-
-</br>
-
-
-</br></br></br>
-
-> Powered by [Docsify](https://docsify.js.org/#/zh-cn/).</br>
-> Last update: {docsify-updated}
+算法和代码结构

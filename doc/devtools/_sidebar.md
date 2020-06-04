@@ -14,7 +14,7 @@
 * [常用框架](/doc/frame/)
     
         
-* [三方服务](/doc/serve/)
+* [三方服务](/doc/server/)
     
 
 * [Linux](/doc/linux/)

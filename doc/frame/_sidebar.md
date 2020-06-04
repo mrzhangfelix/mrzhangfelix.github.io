@@ -5,7 +5,7 @@
 * [开发语言](/doc/devLanguage/)
         
 * [常用框架](/doc/frame/)
-    * [Spring](/doc/frame/spring.md)
+    * [Spring](/doc/frame/spring/spring.md)
         * [基本概念]()
         * [依赖注入]()
         * [面向切面]()
@@ -27,6 +27,6 @@
         * [Spark SQL]()
         * [Spark Streaming]()
         
-* [三方服务](/doc/serve/)
+* [三方服务](/doc/server/)
 
 * [Linux](/doc/linux/)
