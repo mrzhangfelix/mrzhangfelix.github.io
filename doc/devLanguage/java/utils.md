@@ -71,6 +71,12 @@ isExtension 检查文件后缀名是不是传入参数(List<String>)中的一个
 1. isEquals 比较数组是否相等
 1. toObject 基础类型数据数组转换为对应的Object数组
 
+### java.util.Arrays
+1. fill 给数组赋值
+2. sort 给数组排序
+3. equals 比较数组中的元素值是否相等
+4. binarySearch 对排序好的数组进行二分查找
+
 ## bean操作
 ### org.apache.commons.beanutils.PropertyUtils
 1. getProperty 获取对象属性值
@@ -97,3 +103,20 @@ isExtension 检查文件后缀名是不是传入参数(List<String>)中的一个
 1. sha256Hex SHA-256加密
 1. sha512Hex SHA-512加密
 1. md5 MD5加密，返回16位
+
+###  java.lang.Math
+
+Math.abs(12.3);					//12.3 返回这个数的绝对值
+Math.sqrt(x);					//√(x) x的二次方根
+//返回较大值和较小值
+Math.max(x, y);					//返回x、y中较大的那个数
+Math.min(x, y);					//返回x、y中较小的那个数
+//返回 x的y次幂
+Math.pow(x, y);					
+Math.pow(2, 3);					//即2³ 即返回：8
+//随机返回[0,1)之间的无符号double值
+Math.random();					
+//三角函数
+Math.sin(α);					//sin（α）的值
+Math.cos(α);					//cos（α）的值
+Math.tan(α);					//tan（α）的值
