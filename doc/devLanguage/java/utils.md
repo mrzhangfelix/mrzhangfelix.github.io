@@ -104,19 +104,18 @@ isExtension 检查文件后缀名是不是传入参数(List<String>)中的一个
 1. sha512Hex SHA-512加密
 1. md5 MD5加密，返回16位
 
-###  java.lang.Math
+## com.alibaba.fastjson.JSON;
+1. Object parse(String text); 把JSON文本parse为JSONObject或者JSONArray
+1. JSONObject parseObject(String text); 把JSON文本parse成JSONObject
+1. T parseObject(String text, Class clazz); 把JSON文本parse为JavaBean
+1. JSONArray parseArray(String text); 把JSON文本parse成JSONArray
+1. List parseArray(String text, Class clazz); 把JSON文本parse成JavaBean集合
+1. String toJSONString(Object object); 将JavaBean序列化为JSON文本
+1. String toJSONString(Object object, boolean prettyFormat); 将JavaBean序列化为带格式的JSON文本
+1. Object toJSON(Object javaObject); 将JavaBean转换为JSONObject或者JSONArray。
 
-Math.abs(12.3);					//12.3 返回这个数的绝对值
-Math.sqrt(x);					//√(x) x的二次方根
-//返回较大值和较小值
-Math.max(x, y);					//返回x、y中较大的那个数
-Math.min(x, y);					//返回x、y中较小的那个数
-//返回 x的y次幂
-Math.pow(x, y);					
-Math.pow(2, 3);					//即2³ 即返回：8
-//随机返回[0,1)之间的无符号double值
-Math.random();					
-//三角函数
-Math.sin(α);					//sin（α）的值
-Math.cos(α);					//cos（α）的值
-Math.tan(α);					//tan（α）的值
+
+
+
+
+
