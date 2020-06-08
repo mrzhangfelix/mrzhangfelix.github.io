@@ -1,13 +1,7 @@
 <div align=center><img src="./img/admire.png" width=220/></div>
 
-</br>
-
-<font size=6 style="font-weight:bold;">Hi</font>
-
-</br>
-
-<font size=6 style="font-weight:bold;">Linux学习</font>
-
-</br>
-
+* [Linux](/doc/linux/)
+    * [概述]()
+    * [常用命令](/doc/linux/cmd.md)
+    * [shell]()
 

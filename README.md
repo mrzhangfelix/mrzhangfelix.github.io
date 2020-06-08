@@ -15,3 +15,4 @@
 
 > Powered by [Docsify](https://docsify.js.org/#/zh-cn/).</br>
 > Last update: {docsify-updated}
+docsify serve ./

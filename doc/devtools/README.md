@@ -1,17 +1,9 @@
 <div align=center><img src="./img/admire.png" width=220/></div>
 
-</br>
-
-<font size=6 style="font-weight:bold;">Hi</font>
-
-</br>
-
-<font size=6 style="font-weight:bold;">开发工具的使用</font>
-
-</br>
-
-
-</br></br></br>
-
-> Powered by [Docsify](https://docsify.js.org/#/zh-cn/).</br>
-> Last update: {docsify-updated}
+* [开发工具](/doc/devtools/)
+    1. Idea的使用
+        * [快捷键](/doc/devtools/Idea/hotkeys)
+        * [常用插件](/doc/devtools/Idea/plugin)
+    2. Chrome的使用
+        * [常用插件](/doc/devtools/chrome/pulgin.md)
+        * [自制油猴脚本](/doc/devtools/chrome/script.md)
