@@ -183,8 +183,33 @@ controller中的注解
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 ```
+```xml
+<dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+```
 JWT原理
 
 JSON Web Token（JWT）是目前最流行的跨域身份验证解决方案。
 
 其原理是将用户信息的JSON字符串加密生成唯一的token返回给前端，后端通过解析token来验证是否已登录。
+
+## lombok
+```xml
+<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+```
+
+## StringUtils
+```xml
+<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+```

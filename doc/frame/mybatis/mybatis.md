@@ -1,50 +1,15 @@
 # Mybatis
 
-## MyBatis Generator 详解
-
-自动生成数据库中的bean和mapper等代码和配置
-
-## 通用Mapper配置
-通用Mapper都可以极大的方便开发人员,对单表封装了许多通用方法，省掉自己写增删改查的sql。
-```java
-package com.dudu.util;
-
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
-
-/**
- * 继承自己的MyMapper
- *
- * @author
- * @since 2017-06-26 21:53
- */
-public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
-}
-```
-
-这里实现一个自己的接口,继承通用的mapper，关键点就是这个接口不能被扫描到，不能跟dao这个存放mapper文件放在一起。
-
-最后在启动类中通过MapperScan注解指定扫描的mapper路径：
-```java
-package com.dudu;
-@SpringBootApplication
-//启注解事务管理
-@EnableTransactionManagement  // 启注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
-@MapperScan(basePackages = "com.dudu.dao", markerInterface = MyMapper.class)
-public class Application {
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
-}
-```
-
 ## druid数据源
 ```xml
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>druid-spring-boot-starter</artifactId>
     <version>1.1.9</version>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
 </dependency>
 ```
 
@@ -104,3 +69,51 @@ spring.datasource.druid.web-stat-filter.exclusions=*.js,*.gif,*.jpg,*.png,*.css,
 
 访问地址：
 http://localhost:8080/druid
+
+## MyBatis Generator 详解
+
+自动生成数据库中的bean和mapper等代码和配置
+
+## 通用Mapper配置
+通用Mapper都可以极大的方便开发人员,对单表封装了许多通用方法，省掉自己写增删改查的sql。
+```java
+package com.dudu.util;
+
+import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.common.MySqlMapper;
+
+/**
+ * 继承自己的MyMapper
+ *
+ * @author
+ * @since 2017-06-26 21:53
+ */
+public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
+    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+}
+```
+
+这里实现一个自己的接口,继承通用的mapper，关键点就是这个接口不能被扫描到，不能跟dao这个存放mapper文件放在一起。
+
+最后在启动类中通过MapperScan注解指定扫描的mapper路径：
+```java
+package com.dudu;
+@SpringBootApplication
+//启注解事务管理
+@EnableTransactionManagement  // 启注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
+@MapperScan(basePackages = "com.dudu.dao", markerInterface = MyMapper.class)
+public class Application {
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+}
+```
+
+## MybatisPlus
+```xml
+<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+```
