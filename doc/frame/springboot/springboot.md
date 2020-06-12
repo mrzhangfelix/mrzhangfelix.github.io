@@ -176,6 +176,22 @@ controller中的注解
 - 需要注意的是，@ApiImplicitParam注解中虽然可以指定参数是必填的，但是却不能代替@RequestParam(required = true)，前者的必填只是在Swagger2框架内必填，抛弃了Swagger2，这个限制就没用了，所以假如开发者需要指定一个参数必填，@RequestParam(required = true)注解还是不能省略。
 - 如果参数是一个对象（例如上文的更新接口），对于参数的描述也可以放在实体类中。
 
+### @ApiImplicitParam：
+作用在方法上，表示单独的请求参数 
+参数： 
+1. name ：参数名。 
+2. value ： 参数的具体意义，作用。 
+3. required ： 参数是否必填。 
+4. dataType ：参数的数据类型。 
+5. paramType ：查询参数类型，这里有几种形式：
+
+类型 作用
+path 以地址的形式提交数据
+query 直接跟参数完成自动映射赋值
+body 以流的形式提交 仅支持POST
+header 参数在request headers 里边提交
+form 以form表单的形式提交 仅支持POST
+
 ## 整合security
 ```xml
  <dependency>

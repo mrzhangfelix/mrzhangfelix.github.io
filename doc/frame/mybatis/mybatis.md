@@ -117,3 +117,28 @@ public class Application {
             <version>3.1.0</version>
         </dependency>
 ```
+
+
+
+## mybatis打印sql
+配置dao包的日志级别为debug
+```properties
+# 打印sql
+logging:
+  level: 
+    com.felix.mapper: DEBUG
+```
+
+## tk.mybatis
+### update
+updateByPrimaryKey：根据主键更新所有属性
+updateByPrimaryKeySelective：根据主键更新有值属性
+
+### select返回id
+1、实体（xxxEntity）类中设置自增ID属性
+```java
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+```
+
