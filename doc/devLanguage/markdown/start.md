@@ -93,7 +93,7 @@ $(document).ready(function () {
 
 # 图片
     ![alt 属性文本](图片地址 "可选标题")
-![alt 属性文本](../../img/admire220.png)
+![alt 属性文本](../../img/admire.png)
 
 # 表格
     |  表头   | 表头  |

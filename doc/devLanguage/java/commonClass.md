@@ -1,3 +1,11 @@
+JDK 中常用的包有哪些
+java.lang：这个是系统的基础类；
+java.io：这里面是所有输入输出有关的类，比如文件操作等；
+java.nio：为了完善 io 包中的功能，提高 io 包中性能而写的一个新包；
+java.net：这里面是与网络有关的类；
+java.util：这个是系统辅助类，特别是集合类；
+java.sql：这个是数据库操作的类。
+
 # 常见类
 
 ## String
@@ -95,6 +103,17 @@
 8.	public final boolean isAlive() 测试线程是否处于活动状态。
 
 
+
+## Files的常用方法
+Files. exists()：检测文件路径是否存在。
+Files. createFile()：创建文件。
+Files. createDirectory()：创建文件夹。
+Files. delete()：删除一个文件或目录。
+Files. copy()：复制文件。
+Files. move()：移动文件。
+Files. size()：查看文件个数。
+Files. read()：读取文件。
+Files. write()：写入文件。
 
 
 
