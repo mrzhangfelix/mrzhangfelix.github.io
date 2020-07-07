@@ -7,3 +7,4 @@
     2. Chrome的使用
         * [常用插件](/doc/devtools/chrome/pulgin.md)
         * [自制油猴脚本](/doc/devtools/chrome/script.md)
+    3. [Maven](/doc/devtools/maven.md)

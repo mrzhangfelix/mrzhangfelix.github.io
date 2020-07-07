@@ -9,11 +9,15 @@
         * [基本概念](/doc/frame/spring/spring.md)
     * Springboot
         * [基本概念](/doc/frame/springboot/springboot.md)
-        * [SpringScurity](/doc/frame/springboot/springscurity.md)
+        * [SpringScurity](/doc/frame/springboot/springsecurity.md)
+        * [SpringCloud](/doc/frame/springboot/springcloud.md)
     * Mybatis
         * [基本概念](/doc/frame/mybatis/mybatis.md)
     * Spark
         * [概述](/doc/frame/spark/spark.md)
+    * Vue
+        * [工具方法](/doc/frame/vue/vue.md)
+    * [设计模式](/doc/frame/DesignPattern.md)
         
 * [三方服务](/doc/server/)
 
