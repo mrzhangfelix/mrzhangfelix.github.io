@@ -9,7 +9,7 @@ top 命令会默认按照CPU的占用情况，显示占用量较大的进程,可
 ls -l | wc -l 计数当前目录下的文件数量
 
         wc -l
-
+    
         统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件，所以就是文件的个数。
 
 
@@ -651,3 +651,42 @@ yum（ Yellow dog Updater, Modified）是一个在Fedora和RedHat以及SUSE中�
 - 解压 `*.zip` 文件：`unzip test.zip` 。
 
 - 查看 `*.zip` 文件的内容：`unzip -l jasper.zip` 。
+
+# 服务类命令
+
+## service(centos6)
+注册在系统中的标准化层序
+
+有方便统一的管理方式（常用的方法）
+
+service 服务名 start
+service 服务名 stop
+service 服务名 restart
+service 服务名 reload
+service 服务名 status
+查看服务的方法 /etc/init.d/服务名
+
+通过chkconfig 命令设置自启动
+
+查看服务 chkconfig --list|grep xxx
+
+chkconfig --level 5 服务名 on
+
+(on 是启动，off是关闭)
+
+## systemctl(centos7)
+注册在系统中的标准化程序
+有方便统一的管理方式（常用的方法）
+systemctl start 服务名(xxxx.service)
+systemctl restart 服务名(xxxx.service)
+systemctl stop 服务名(xxxx.service)
+systemctl reload 服务名(xxxx.service)
+systemctl status 服务名(xxxx.service)
+查看服务的方法 /usr/lib/systemd/system
+查看服务的命令
+systemctl list-unit-files
+systemctl --type service
+通过systemctl命令设置自启动
+自启动systemctl enable service_name
+不自启动systemctl disable serivice_name
+

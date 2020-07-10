@@ -281,72 +281,7 @@ PatternSyntaxException 是一个非强制异常类，它表示一个正则表达
 | \nml          | 当 *n* 是八进制数 (0-3)，*m* 和 *l* 是八进制数 (0-7) 时，匹配八进制转义码 *nml*。 |
 | \u*n*         | 匹配 *n*，其中 *n* 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。 |
 
-## 异常
-检查性异常：最具代表的检查性异常是用户错误或问题引起的异常，这是程序员无法预见的。例如要打开一个不存在文件时，一个异常就发生了，这些异常在编译时不能被简单地忽略。
 
-运行时异常： 运行时异常是可能被程序员避免的异常。与检查性异常相反，运行时异常可以在编译时被忽略。
-
-错误： 错误不是异常，而是脱离程序员控制的问题。错误在代码中通常被忽略。例如，当栈溢出时，一个错误就发生了，它们在编译也检查不到的。
-常见的检查性异常
-
-检查性异常
-
-| 异常                          | 描述 |
-| -------------------------     | ----------- |
-|  ClassNotFoundException       |	应用程序试图加载类时，找不到相应的类，抛出该异常。 |
-|  CloneNotSupportedException   |	当调用 Object 类中的 clone 方法克隆对象，但该对象的类无法实现 Cloneable 接口时，抛出该异常。|
-|  IllegalAccessException       |	拒绝访问一个类的时候，抛出该异常。 |
-|  InstantiationException       |	当试图使用 Class 类中的 newInstance 方法创建一个类的实例，而指定的类对象因为是一个接口或是一个抽象类而无法实例化时，抛出该异常。|
-|  InterruptedException         |	一个线程被另一个线程中断，抛出该异常。 |
-|  NoSuchFieldException         |	请求的变量不存在 |
-|  NoSuchMethodException        |	请求的方法不存在 |
-
-运行时异常
-
-| 异常                                |	描述              |
-|---                                |---                |
-| ArithmeticException               |	当出现异常的运算条件时，抛出此异常。例如，一个整数"除以零"时，抛出此类的一个实例。 |
-| ArrayIndexOutOfBoundsException    |	用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。 |
-| ArrayStoreException               |	试图将错误类型的对象存储到一个对象数组时抛出的异常。 |
-| ClassCastException                |	当试图将对象强制转换为不是实例的子类时，抛出该异常。 |
-| IllegalArgumentException          |	抛出的异常表明向方法传递了一个不合法或不正确的参数。 |
-| IllegalMonitorStateException      |	抛出的异常表明某一线程已经试图等待对象的监视器，或者试图通知其他正在等待对象的监视器而本身没有指定监视器的线程。 |
-| IllegalStateException             |	在非法或不适当的时间调用方法时产生的信号。换句话说，即 Java 环境或 Java 应用程序没有处于请求操作所要求的适当状态下。 |
-| IllegalThreadStateException       |	线程没有处于请求操作所要求的适当状态时抛出的异常。 |
-| IndexOutOfBoundsException	        |   指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。 |
-| NegativeArraySizeException        |	如果应用程序试图创建大小为负的数组，则抛出该异常。 |
-| NullPointerException              |	当应用程序试图在需要对象的地方使用 null 时，抛出该异常 |
-| NumberFormatException             |	当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常。 |
-| SecurityException	                |   由安全管理器抛出的异常，指示存在安全侵犯。 |
-| StringIndexOutOfBoundsException   |	此异常由 String 方法抛出，指示索引或者为负，或者超出字符串的大小。 |
-| UnsupportedOperationException     |	当不支持请求的操作时，抛出该异常。 |
-
-## 集合框架
-LinkedList 该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，LinkedList 查找效率低。
-
-ArrayList 实现了List的接口，实现了可变大小的数组，随机访问和遍历元素时，提供更好的性能。是非同步的,多线程不要使用。ArrayList增长当前长度的50%，插入删除效率低。
-
-HashSet 该类实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为null的元素，但最多只能一个。
-
-TreeSet 该类实现了Set接口，可以实现排序等功能。
-
-HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。实现了Map接口，键的HashCode值存储数据，具有很快的访问速度，最多允许一条记录的键为null，不支持线程同步。
-
-TreeMap 继承了AbstractMap，并且使用一颗树。
-
-Arrays.asList()只会返回1个固定大小的列表， 其返回的List是AbstractList，无法调用add、remove和clear， 如果调用会直接抛异常。
-异常名字为UnsupportedOperationException
-
-
-
-equals返回true，必定hashCode相同。
-
-## 多线程
-创建线程的方法：
-
-- 通过实现 Runnable 接口；
-- 通过继承 Thread 类本身；
-- 通过 Callable 和 Future 创建线程。
 
 
 
