@@ -2,15 +2,13 @@
 
 ## 基础知识
 
-### 并发编程
-
-- 并发编程的优点）
+### 并发编程的优点
 
 充分利用多核CPU的计算能力：通过并发编程的形式可以将多核CPU的计算能力发挥到极致，性能得到提升
 
 方便进行业务拆分，提升系统并发能力和性能：在特殊的业务场景下，先天的就适合于并发编程。现在的系统动不动就要求百万级甚至千万级的并发量，而多线程并发编程正是开发高并发系统的基础，利用好多线程机制可以大大提高系统整体的并发能力以及性能。面对复杂业务模型，并行程序会比串行程序更适应业务需求，而并发编程更能吻合这种业务拆分 。
 
-- 并发编程缺点
+### 并发编程缺点
 
 并发编程的目的就是为了能提高程序的执行效率，提高程序运行速度，但是并发编程并不总是能提高程序运行速度的，而且并发编程可能会遇到很多问题，比如**：内存泄漏、上下文切换、线程安全、死锁**等问题。
 
@@ -20,7 +18,7 @@
 
 2. 死锁是指两个或两个以上的进程（线程）在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程（线程）称为死锁进程（线程）。
 
-死锁的四个必要条件是什么
+### 死锁的四个必要条件是什么
 
 互斥条件：线程(进程)对于所分配到的资源具有排它性，即一个资源只能被一个线程(进程)占用，直到被该线程(进程)释放
 请求与保持条件：一个线程(进程)因请求被占用资源而发生阻塞时，对已获得的资源保持不放。
@@ -144,13 +142,14 @@ Thread 类的 sleep()和 yield()方法将在当前正在执行的线程上运行
 
 - synchronized 和 Lock 有什么区别？
 
-  ​	- 首先synchronized是Java内置关键字，在JVM层面，Lock是个Java类；
+  	- 首先synchronized是Java内置关键字，在JVM层面，Lock是个Java类；
+	- synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。
+  	- synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock 需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。
 
-  ​	- synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。
-
-  ​	- synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock 需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。
-
-  ​	- 通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。
+  	- 通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。
+	- lock可以中断，synchronized要么出异常要么正常结束
+  	- synchronized是非公平锁，Lock两者都可以
+  	- Lock可以精确唤醒需要唤醒的线程，synchronized要么唤醒一个要么唤醒全部
 
 ### volatile 关键字
 - 提供多线程共享变量可见性
@@ -337,9 +336,41 @@ ReentrantLock支持两种锁：公平锁和非公平锁。何谓公平性，是�
 
 
 
+# 阻塞队列
 
+当阻塞队列为空时，从队列里获取元素的操作会被阻塞
 
+当阻塞队列满时，向队列里添加元素的操作会被阻塞
 
+好处是我们不需要关心什么时候需要阻塞线程,什么时候需要唤醒线程,因为BlockingQueue都一手给你包办好了
+
+## 核心方法：
+
+![1594748426153](img\thread.png)
+
+- 抛出异常	当阻塞队列满时,再往队列里面add插入元素会抛IllegalStateException: Queue full
+  当阻塞队列空时,再往队列Remove元素时候回抛出NoSuchElementException
+- 特殊值	插入方法,成功返回true 失败返回false
+  移除方法,成功返回元素,队列里面没有就返回null
+- 一直阻塞	当阻塞队列满时,生产者继续往队列里面put元素,队列会一直阻塞直到put数据or响应中断退出
+  当阻塞队列空时,消费者试图从队列take元素,队列会一直阻塞消费者线程直到队列可用.
+- 超时退出	当阻塞队列满时,队列会阻塞生产者线程一定时间,超过后限时后生产者线程就会退出
+
+## 常见阻塞队列：
+
+ArrayBlockingQueue: 由数组结构组成的有界阻塞队列.
+
+LinkedBlockingDeque: 由链表结构组成的有界(但大小默认值Integer>MAX_VALUE)阻塞队列.
+
+PriorityBlockingQueue:支持优先级排序的无界阻塞队列.
+
+DelayQueue: 使用优先级队列实现的延迟无界阻塞队列.
+
+SynchronousQueue:不存储元素的阻塞队列,也即是单个元素的队列.
+
+LinkedTransferQueue:由链表结构组成的无界阻塞队列.
+
+LinkedBlockingDeque:由了解结构组成的双向阻塞队列.
 
 # 并发容器
 
@@ -432,12 +463,6 @@ newCachedThreadPool 和 newScheduledThreadPool:
 主要问题是线程数最大数是 Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至 OOM。
 
 ThreaPoolExecutor创建线程池方式只有一种，就是走它的构造函数，参数自己指定
-
-### 创建线程池吗？
-
-创建线程池的方式有多种，这里你只需要答 ThreadPoolExecutor 即可。
-
-ThreadPoolExecutor() 是最原始的线程池创建，也是阿里巴巴 Java 开发手册中明确规范的创建线程池的方式。
 
 ### ThreadPoolExecutor构造函数重要参数分析
 ThreadPoolExecutor 3 个最重要的参数：
@@ -563,25 +588,40 @@ Atomic包中的类基本的特性就是在多线程环境下，当有多个线�
 
 # 并发工具
 
-### 在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？
-**CountDownLatch(倒计时器)：** CountDownLatch是一个同步工具类，用来协调多个线程之间的同步。这个工具通常用来控制线程等待，它可以让某一个线程等待直到倒计时结束，再开始执行。
+### CycliBarriar 和 CountdownLatch 
+**CountDownLatch(倒计时器)：** CountDownLatch是一个同步工具类，用来协调多个线程之间的同步。这个工具通常用来控制线程阻塞等待，它可以让某一个线程等待直到倒计时结束，再开始执行。
 
-CyclicBarrier(循环栅栏)： CyclicBarrier 和 CountDownLatch 非常类似，它也可以实现线程间的技术等待，但是它的功能比 CountDownLatch 更加复杂和强大。主要应用场景和 CountDownLatch 类似。CyclicBarrier 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。CyclicBarrier默认的构造方法是 CyclicBarrier(int parties)，其参数表示屏障拦截的线程数量，每个线程调用await()方法告诉 CyclicBarrier 我已经到达了屏障，然后当前线程被阻塞。
+两个方法：
+
+1. 计数方法：countDownLath.countDown();
+2. 等待方法：await（）； 
+
+
+
+CyclicBarrier(循环栅栏)： CyclicBarrier 和 CountDownLatch 非常类似，它也可以实现线程间的技术等待，但是它的功能比 CountDownLatch 更加复杂和强大。
+
+主要应用场景和 CountDownLatch 类似。 CyclicBarrier 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。
+
+CyclicBarrier默认的构造方法是 CyclicBarrier(int parties)，其参数表示屏障拦截的线程数量，每个线程调用await()方法告诉 CyclicBarrier 我已经到达了屏障，然后当前线程被阻塞。
 
 CountDownLatch与CyclicBarrier都是用于控制并发的工具类，都可以理解成维护的就是一个计数器，但是这两者还是各有不同侧重点的：
 
-CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；而CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；CountDownLatch强调一个线程等多个线程完成某件事情。CyclicBarrier是多个线程互等，等大家都完成，再携手共进。
+| CountDownLatch                                               | CyclicBarrier                                                |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行  | 一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行 |
+| 强调一个线程等多个线程完成某件事情                           | 是多个线程互等，等大家都完成，再携手共进。                   |
+| 调用CountDownLatch的countDown方法后，当前线程并不会阻塞，会继续往下执行； | 调用CyclicBarrier的await方法，会阻塞当前线程，直到CyclicBarrier指定的线程全部都到达了指定点的时候，才能继续往下执行； |
+| 方法比较少，操作比较简单，                                   | 提供的方法更多，比如能够通过getNumberWaiting()，isBroken()这些方法获取当前多个线程的状态，并且CyclicBarrier的构造方法可以传入barrierAction，指定当所有线程都到达时执行的业务功能； |
+| 是不能复用的                                                 | 可以复用的。                                                 |
 
-调用CountDownLatch的countDown方法后，当前线程并不会阻塞，会继续往下执行；而调用CyclicBarrier的await方法，会阻塞当前线程，直到CyclicBarrier指定的线程全部都到达了指定点的时候，才能继续往下执行；
-
-CountDownLatch方法比较少，操作比较简单，而CyclicBarrier提供的方法更多，比如能够通过getNumberWaiting()，isBroken()这些方法获取当前多个线程的状态，并且CyclicBarrier的构造方法可以传入barrierAction，指定当所有线程都到达时执行的业务功能；
-
-CountDownLatch是不能复用的，而CyclicLatch是可以复用的。
 
 
+### Semaphore （信号量）
+Semaphore 就是一个信号量，它的作用是限制某段代码块的并发数。多个共享资源的互斥使用，类似于停车位
 
-### Semaphore 有什么作用
-Semaphore 就是一个信号量，它的作用是限制某段代码块的并发数。Semaphore有一个构造函数，可以传入一个 int 型整数 n，表示某段代码最多只有 n 个线程可以访问，如果超出了 n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果 Semaphore 构造函数中传入的 int 型整数 n=1，相当于变成了一个 synchronized 了。
+Semaphore有一个构造函数，可以传入一个 int 型整数 n，表示某段代码最多只有 n 个线程可以访问，如果超出了 n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果 Semaphore 构造函数中传入的 int 型整数 n=1，相当于变成了一个 synchronized 了。
+
+两个方法：1、acquire（）获取锁	2、release（）释放锁
 
 Semaphore(信号量)-允许多个线程同时访问： synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。
 

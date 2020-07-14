@@ -1,6 +1,6 @@
-## 集合容器概述
+# 集合容器概述
 
-### 什么是集合
+## 什么是集合
 
 **集合框架**：用于存储数据的容器。
 
@@ -10,14 +10,14 @@
 
 **算法**：在一个实现了某个集合框架中的接口的对象身上完成某种有用的计算的方法，例如查找、排序等。这些算法通常是多态的，因为相同的方法可以在同一个接口被多个类实现时有不同的表现。
 
-### 集合的特点
+## 集合的特点
 
 集合的特点主要有如下两点：
 
 - 对象封装数据，对象多了也需要存储。集合用于存储对象。
 - 对象的个数确定可以使用数组，对象的个数不确定的可以用集合。因为集合是可变长度的。
 
-### 集合和数组的区别
+## 集合和数组的区别
 
 - 数组是固定长度的；集合可变长度的。
 - 数组可以存储基本数据类型，也可以存储引用数据类型；集合只能存储引用数据类型。
@@ -25,7 +25,7 @@
 
 **数据结构**：就是容器中存储数据的方式。
 
-### 使用集合框架的好处
+## 使用集合框架的好处
 
 容量自增长；
 提供了高性能的数据结构和算法，使编码更轻松，提高了程序速度和质量；
@@ -33,7 +33,8 @@
 可以方便地扩展或改写集合，提高代码复用性和可操作性。
 通过使用JDK自带的集合类，可以降低代码维护和学习新API成本。
 
-常用的集合类有哪些？
+## 常用的集合类有哪些？
+
 Map接口和Collection接口是所有集合框架的父接口：
 
 Collection接口的子接口包括：Set接口和List接口
@@ -41,25 +42,29 @@ Map接口的实现类主要有：HashMap、TreeMap、Hashtable、ConcurrentHashM
 Set接口的实现类主要有：HashSet、TreeSet、LinkedHashSet等
 List接口的实现类主要有：ArrayList、LinkedList、Stack以及Vector等
 
-集合框架底层数据结构
+## 集合框架底层数据结构
+
 Collection
 
 List
 Arraylist： Object数组
 Vector： Object数组
 LinkedList： 双向循环链表
+CopyonWriteArrayList：写时复制List
+
 Set
 HashSet（无序，唯一）：基于 HashMap 实现的，底层采用 HashMap 来保存元素
 LinkedHashSet： LinkedHashSet 继承与 HashSet，并且其内部是通过 LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基于 Hashmap 实现一样，不过还是有一点点区别的。
 TreeSet（有序，唯一）： 红黑树(自平衡的排序二叉树。)
-Map
+CopyOnWriteArraySet：底层实现用的是读写复制ListMap
 
 HashMap： JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
 LinkedHashMap：LinkedHashMap 继承自 HashMap，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。
 HashTable： 数组+链表组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的
 TreeMap： 红黑树（自平衡的排序二叉树）
 
-### 怎么确保一个集合不能被修改？
+## 怎么确保一个集合不能被修改？
+
 可以使用 Collections. unmodifiableCollection(Collection c) 方法来创建一个只读集合，这样改变集合的任何操作都会抛出 Java. lang. UnsupportedOperationException 异常。
 
 Arrays.asList()只会返回1个固定大小的列表， 其返回的List是AbstractList，无法调用add、remove和clear， 如果调用会直接抛异常。
@@ -157,7 +162,59 @@ HashMap 的 key 是唯一的，由源码可以看出 HashSet 添加进去的值�
 |HashMap使用键（Key）计算Hashcode|	HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性，如果两个对象不同的话，那么返回false|
 |HashMap相对于HashSet较快，因为它是使用唯一的键获取对象	|HashSet较HashMap来说比较慢|
 
-## Map接口
+## Queue接口
+
+Queue： 基本上，一个队列就是一个先入先出（FIFO）的数据结构
+
+Queue接口与List、Set同一级别，都是继承了Collection接口。LinkedList实现了Deque接口
+
+### 非阻塞队列
+
+非阻塞队列不能阻塞，多线程时，当队列满或者队列空时，只能使用队列wait()，notify()进行队列消息传送。
+
+1. PriorityQueue
+   PriorityQueue类实质上维护了一个有序列表。加入到 Queue 中的元素根据它们的天然排序（通过其 java.util.Comparable 实现）或者根据传递给构造函数的 java.util.Comparator 实现来定位。该队列不允许使用 null 元素也不允许插入不可比较的对象
+
+PriorityQueue 队列的头指排序规则最小那个元素。如果多个元素都是最小值则随机选一个。
+PriorityQueue 是一个无界队列，但是初始的容量(实际是一个Object[])，随着不断向优先级队列添加元素，其容量会自动扩容，无需指定容量增加策略的细节。
+
+2. ConcurrentLinkedQueue
+   ConcurrentLinkedQueue 是基于链接节点的、线程安全的队列（CAS）。并发访问不需要同步。因为它在队列的尾部添加元素并从头部删除它们，所以只要不需要知道队列的大小，ConcurrentLinkedQueue 对公共集合的共享访问就可以工作得很好。收集关于队列大小的信息会很慢，需要遍历队列。
+
+同样此队列不允许使用null元素，
+
+3. 非阻塞队列的操作
+   add(E e)：将元素e插入到队列末尾，如果插入成功，则返回true；如果插入失败（即队列已满），则会抛出异常；
+     remove()：移除队首元素，若移除成功，则返回true；如果移除失败（队列为空），则会抛出异常；
+     remove(Object o)：移除指定的元素，若移除成功，则返回true；如果移除失败（队列为空），则会抛出异常
+     offer(E e)：将元素e插入到队列末尾，如果插入成功，则返回true；如果插入失败（即队列已满），则返回false；
+     poll()：移除并获取队首元素，若成功，则返回队首元素；否则返回null；
+     peek()：获取队首元素，若成功，则返回队首元素；否则返回null
+
+### 阻塞队列
+
+  阻塞队列可以阻塞，当阻塞队列当队列里面没有值时，会阻塞直到有值输入。输入也一样，当队列满的时候，会阻塞，直到队列不为空。
+
+1. 阻塞队列
+   ArrayBlockingQueue ：一个由数组支持的有界队列。
+   LinkedBlockingQueue ：一个由链接节点支持的可选有界队列。
+   PriorityBlockingQueue ：一个由优先级堆支持的无界优先级队列。
+   DelayQueue ：一个由优先级堆支持的、基于时间的调度队列。
+   SynchronousQueue ：一个利用 BlockingQueue 接口的简单聚集（rendezvous）机制。
+
+2. 阻塞队列的操作
+   阻塞队列包括了非阻塞队列中的大部分方法，上面列举的5个方法在阻塞队列中都存在，但是要注意这5个方法在阻塞队列中都进行了同步措施。
+
+除此之外，阻塞队列提供了另外4个非常有用的方法：
+
+put(E e)：用来向队尾存入元素，如果队列满，则等待；
+take()：用来从队首取元素，如果队列为空，则等待；
+offer(E e,long timeout, TimeUnit unit)：用来向队尾存入元素，如果队列满，则等待一定的时间，当时间期限达到时，如果还没有插入成功，则返回false；否则返回true；
+poll(long timeout, TimeUnit unit)：用来从队首取元素，如果队列空，则等待一定的时间，当时间期限达到时，如果取到，则返回null；否则返回取得的元素；
+
+
+
+# Map接口
 
 ### HashMap 的实现原理？
 
@@ -262,3 +319,7 @@ HashMap自己实现了自己的hash()方法，通过两次扰动使得它自己�
 ### HashMap 和 ConcurrentHashMap 的区别
 ConcurrentHashMap对整个桶数组进行了分割分段(Segment)，然后在每一个分段上都用lock锁进行保护，相对于HashTable的synchronized锁的粒度更精细了一些，并发性能更好，而HashMap没有锁机制，不是线程安全的。（JDK1.8之后ConcurrentHashMap启用了一种全新的方式实现,利用CAS算法。）
 HashMap的键值对允许有null，但是ConCurrentHashMap都不允许。
+
+
+
+
