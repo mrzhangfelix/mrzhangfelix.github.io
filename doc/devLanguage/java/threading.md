@@ -25,6 +25,54 @@
 不剥夺条件：线程(进程)已获得的资源在末使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。
 循环等待条件：当发生死锁时，所等待的线程(进程)必定会形成一个环路（类似于死循环），造成永久阻塞
 
+```java
+class HoldThread implements Runnable {
+
+    private String lockA;
+    private String lockB;
+
+    public HoldThread(String lockA, String lockB) {
+        this.lockA = lockA;
+        this.lockB = lockB;
+    }
+
+    @Override
+    public void run() {
+        synchronized (lockA) {
+            System.out.println(Thread.currentThread().getName() + "\t 自己持有锁" + lockA + "尝试获得" + lockB);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized (lockB) {
+                System.out.println(Thread.currentThread().getName() + "\t 自己持有锁" + lockB + "尝试获得" + lockA);
+            }
+        }
+    }
+}
+
+/**
+ * Description:
+ * 死锁是指两个或者以上的进程在执行过程中,
+ * 因争夺资源而造成的一种相互等待的现象,
+ * 若无外力干涉那他们都将无法推进下去
+ *
+ * @author veliger@163.com
+ * @date 2019-04-14 0:05
+ **/
+public class DeadLockDemo {
+    public static void main(String[] args) {
+        String lockA = "lockA";
+        String lockB = "lockB";
+        new Thread(new HoldThread(lockA, lockB), "threadAAA").start();
+        new Thread(new HoldThread(lockB, lockA), "threadBBB").start();
+    }
+}
+```
+
+
+
 ## JMM
 
 JMM(Java内存模型Java Memory Model,简称JMM)本身是一种抽象的概念 并不真实存在,它描述的是一组规则或规范通过规范定制了程序中各个变量(包括实例字段,静态字段和构成数组对象的元素)的访问方式.
@@ -264,7 +312,7 @@ CAS 的会产生什么问题？
 
 当对一个共享变量执行操作时，我们可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，这个时候就可以用锁。
 
-### 死锁
+### 死锁，活锁，饥饿
 
 当线程 A 持有独占锁a，并尝试去获取独占锁 b 的同时，线程 B 持有独占锁 b，并尝试获取独占锁 a 的情况下，就会发生 AB 两个线程由于互相持有对方需要的锁，而发生的阻塞现象，我们称为死锁。
 
@@ -468,7 +516,7 @@ ThreaPoolExecutor创建线程池方式只有一种，就是走它的构造函数
 ThreadPoolExecutor 3 个最重要的参数：
 
 corePoolSize ：核心线程数，线程数定义了最小可以同时运行的线程数量。
-maximumPoolSize ：线程池中允许存在的工作线程的最大数量
+maximumPoolSize ：线程池中允许存在的工作线程的最大数量，核心线程和阻塞队列满了后扩容执行
 workQueue：当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，任务就会被存放在队列中。
 ThreadPoolExecutor其他常见参数:
 
@@ -486,6 +534,12 @@ ThreadPoolExecutor.AbortPolicy：抛出 RejectedExecutionException来拒绝新�
 ThreadPoolExecutor.CallerRunsPolicy：调用执行自己的线程运行任务。您不会任务请求。但是这种策略会降低对于新任务提交速度，影响程序的整体性能。另外，这个策略喜欢增加队列容量。如果您的应用程序可以承受此延迟并且你不能任务丢弃任何一个任务请求的话，你可以选择这个策略。
 ThreadPoolExecutor.DiscardPolicy：不处理新任务，直接丢弃掉。
 ThreadPoolExecutor.DiscardOldestPolicy： 此策略将丢弃最早的未处理的任务请求。
+
+## 合理配置线程池
+
+cpu密集型：任务需要大量运算没有阻塞，一般是CPU核数+1个线程的此案成池
+
+IO密集型：不是一直执行任务，cpu核数*2，CPU核数/（1-阻塞系数）
 
 ### 一个简单的线程池Demo:`Runnable`+`ThreadPoolExecutor`
 
