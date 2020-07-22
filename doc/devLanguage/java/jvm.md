@@ -357,7 +357,7 @@ Major GC/Full GC 是指发生在老年代的 GC，出现了 Major GC 通常会�
 
 - jstack  全称： JVM Stack Trance  作用： 查看某个java进程的堆栈情况， 可用于确认死锁、IO等待、死循环等问题。
 
-- jstat   作用：   查看进程中内存使用情况，但只能给出一些简单统计数据   
+-  jstat   作用：   查看进程中内存使用情况，但只能给出一些简单统计数据   
     - 统计加载了多少类以及占用空间 jstat -class pid
     - 统计编译了多少文件 jstat -compiler 10
     
@@ -387,7 +387,7 @@ Major GC/Full GC 是指发生在老年代的 GC，出现了 Major GC 通常会�
     - 输出传递给main方法的参数: jps -m
 
 - jinfo   jvm infomation    作用：和jps功能类似， 但是支持根据指定pis查看指定进程
-    
+  
     - 可以查看JVM参数、系统参数、调整jvm参数
     
 - 但不支持查看java程序的内存使用情况
