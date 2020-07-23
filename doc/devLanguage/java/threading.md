@@ -515,8 +515,8 @@ ThreaPoolExecutor创建线程池方式只有一种，就是走它的构造函数
 ### ThreadPoolExecutor构造函数重要参数分析
 ThreadPoolExecutor 3 个最重要的参数：
 
-corePoolSize ：核心线程数，线程数定义了最小可以同时运行的线程数量。
-maximumPoolSize ：线程池中允许存在的工作线程的最大数量，核心线程和阻塞队列满了后扩容执行
+corePoolSize ：核心线程数，线程数定义了最小可以同时运行的线程数量。当值窗口
+maximumPoolSize ：线程池中允许存在的工作线程的最大数量，核心线程和阻塞队列满了后扩容执行，候客区
 workQueue：当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，任务就会被存放在队列中。
 ThreadPoolExecutor其他常见参数:
 
@@ -540,6 +540,26 @@ ThreadPoolExecutor.DiscardOldestPolicy： 此策略将丢弃最早的未处理�
 cpu密集型：任务需要大量运算没有阻塞，一般是CPU核数+1个线程的此案成池
 
 IO密集型：不是一直执行任务，cpu核数*2，CPU核数/（1-阻塞系数）
+
+## execute和submit的区别
+
+1、有没有返回值
+
+2、 execute只能接受Runnable类型的任务
+
+​            submit不管是Runnable还是Callable类型的任务都可以接受，但是Runnable返回值均为void，所以使用Future的get()获得的还是null
+
+3、异常处理
+
+execute中抛出异常
+
+​          execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException
+
+​          即和普通线程的处理方式完全一致
+
+​        2.submit中抛出异常
+
+​          不管提交的是Runnable还是Callable类型的任务，如果不对返回值Future调用get()方法，都会吃掉异常
 
 ### 一个简单的线程池Demo:`Runnable`+`ThreadPoolExecutor`
 

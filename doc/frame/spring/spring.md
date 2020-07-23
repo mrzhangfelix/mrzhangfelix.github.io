@@ -88,6 +88,103 @@ Spring 中的 IoC 的实现原理就是工厂模式加反射机制。
 
 AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，**却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来**，便于**减少系统的重复代码**，**降低模块间的耦合度**，并**有利于未来的可拓展性和可维护性**。
 
+AOP：利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用行，同时提高开发效率
+
+不通过修改源代码的方式，在主干功能里面添加新功能
+
+底层使用动态代理方式
+
+1. 有接口的情况，JDK动态代理
+
+创建一个接口实现类的代理对象，增强类的方法
+
+java.lang.reflect.Proxy
+
+调用newProxyInstance方法
+
+三个参数1、当前的类加载器	2、增强方法所在的类实现的接口，支持多个接口  3、实现这个接口InvacationHander，创建代理对象，写增强的方法。
+
+```java
+
+public class JDKProxy {
+
+    public static void main(String[] args) {
+
+        //创建接口实现类代理对象
+
+        Class[] interfaces = {UserDao.class};
+
+//        Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, new InvocationHandler() {
+
+//            @Override
+
+//            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+//                return null;
+
+//            }
+
+//        });
+
+        UserDaoImpl userDao = new UserDaoImpl();
+
+        UserDao dao = (UserDao)Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, new UserDaoProxy(userDao));
+
+        int result = dao.add(1, 2);
+
+        System.out.println("result:"+result);
+
+    }
+
+}
+
+//创建代理对象代码
+
+class UserDaoProxy implements InvocationHandler {
+
+    //1 把创建的是谁的代理对象，把谁传递过来
+
+    //有参数构造传递
+
+    private Object obj;
+
+    public UserDaoProxy(Object obj) {
+
+        this.obj = obj;
+
+    }
+
+    //增强的逻辑
+
+    @Override
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        //方法之前
+
+        System.out.println("方法之前执行...."+method.getName()+" :传递的参数..."+ Arrays.toString(args));
+
+        //被增强的方法执行
+
+        Object res = method.invoke(obj, args);
+
+        //方法之后
+
+        System.out.println("方法之后执行...."+obj);
+
+        return res;
+
+    }
+
+}
+
+```
+
+2.没有接口的情况，使用CGLIB动态代理
+
+创建当前类子类的代理对象，增强类的方法
+
+
 **Spring AOP就是基于动态代理的**
 
 在不修改源代码的情况下，可以给目标类打补丁，让其执行补丁中的代码。
@@ -223,15 +320,40 @@ Bean的生命周期可以表达为：Bean的定义——Bean的初始化——Be
 - 它们由 Spring IoC 容器实例化，配置，装配和管理。
 - Bean 是基于用户提供给容器的配置元数据创建。
 
-###  spring 提供了哪些配置方式？
+###  spring 注入方式
 
 - 基于 xml 配置
 
   bean 所需的依赖项和服务在 XML 格式的配置文件中指定
 
+  <context:compont-scan base-package="com.xxx.xxx">
+
+  use-default-filters=“false”，表示不使用默认过滤器
+
+  <context:include-filter >只扫描的注解配置
+
+  <context:exclude-filter >不扫描的注解配置
+
 - 基于注解配置
 
 您可以通过在相关的类，方法或字段声明上使用注解，将 bean 配置为组件类本身，而不是使用 XML 来描述 bean 装配
+
+### 
+
+```java
+@Autowired  //根据类型进行注入
+
+@Qualifier(value = "userDaoImpl1")
+
+@Resource(name = "userDaoImpl1")  //根据名称进行注入
+
+@Value(value = "abc")
+
+```
+
+完全注解开发：
+
+AnnotationConfigApplicationContext ，使用配置类代替XML文件
 
 - 基于 Java API 配置
 
@@ -250,23 +372,73 @@ Spring 的 Java 配置是通过使用 @Bean 和 @Configuration 来实现。
 | session        | 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean，仅适用于WebApplicationContext环境 |
 | global-session | 一般用于Portlet应用环境，该运用域仅适用于WebApplicationContext环境 |
 
-### spring bean 容器的生命周期是什么样的？
+### spring bean 容器的生命周期
 
-spring bean 容器的生命周期流程如下：
+ spring bean 容器的生命周期流程如下：
 
 1. Spring 容器根据配置中的 bean 定义中实例化 bean。
-2. Spring 使用依赖注入填充所有属性，如 bean 中所定义的配置。
-3. 如果 bean 实现 BeanNameAware 接口，则工厂通过传递 bean 的 ID 来调用 setBeanName()。
-4. 如果 bean 实现 BeanFactoryAware 接口，工厂通过传递自身的实例来调用 setBeanFactory()。
-5. 如果存在与 bean 关联的任何 BeanPostProcessors，则调用 preProcessBeforeInitialization() 方法。
-6. 如果为 bean 指定了 init 方法（`<bean>` 的 init-method 属性），那么将调用它。
-7. 最后，如果存在与 bean 关联的任何 BeanPostProcessors，则将调用 postProcessAfterInitialization() 方法。
-8. 如果 bean 实现 DisposableBean 接口，当 spring 容器关闭时，会调用 destory()。
-9. 如果为 bean 指定了 destroy 方法（`<bean>` 的 destroy-method 属性），那么将调用它
 
-### 什么是 spring 装配
+2. Spring 使用依赖注入填充所有属性，如 bean 中所定义的配置。
+
+   - 如果 bean 实现 BeanNameAware 接口，则工厂通过传递 bean 的 ID 来调用 setBeanName()。
+
+   - 如果 bean 实现 BeanFactoryAware 接口，工厂通过传递自身的实例来调用 setBeanFactory()。
+
+3. 如果存在与 bean 关联的任何 BeanPostProcessors，则调用 preProcessBeforeInitialization() 方法。
+
+4. 如果为 bean 指定了 init 方法（`<bean>` 的 init-method 属性），那么将调用它。
+
+5. 最后，如果存在与 bean 关联的任何 BeanPostProcessors，则将调用 postProcessAfterInitialization() 方法。
+
+6. bean的获取使用
+
+   ​	- 如果 bean 实现 DisposableBean 接口，当 spring 容器关闭时，会调用 destory()。
+
+7. 如果为 bean 指定了 destroy 方法（`<bean>` 的 destroy-method 属性），那么将调用它
+
+###  spring 装配
 
 当 bean 在 Spring 容器中组合在一起时，它被称为装配或 bean 装配。 Spring 容器需要知道需要什么 bean 以及容器应该如何使用依赖注入来将 bean 绑定在一起，同时装配 bean。
+
+bean的自动装配
+
+```xml
+<bean id="emp" class="com.atguigu.spring5.autowire.Emp" autowire="byName">
+
+  <!--<property name="dept" ref="dept"></property>-->
+
+</bean>
+
+<bean id="dept" class="com.atguigu.spring5.autowire.Dept"></bean>
+```
+
+
+
+bean的外部配置文件引入
+
+```xml
+<!--引入外部属性文件-->
+
+<context:property-placeholder location="classpath:jdbc.properties"/>
+
+<!--配置连接池-->
+
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+
+  <property name="driverClassName" value="${prop.driverClass}"></property>
+
+  <property name="url" value="${prop.url}"></property>
+
+  <property name="username" value="${prop.userName}"></property>
+
+  <property name="password" value="${prop.password}"></property>
+
+</bean>
+```
+
+
+
+
 
 ### 自动装配有哪些方式？
 
@@ -279,6 +451,8 @@ Spring 容器能够自动装配 bean。也就是说，可以通过检查 BeanFac
 - **byType** - 它根据类型注入对象依赖项。如果属性的类型与 XML 文件中的一个 bean 名称匹配，则匹配并装配属性。
 - **构造函数** - 它通过调用类的构造函数来注入依赖项。它有大量的参数。
 - **autodetect** - 首先容器尝试通过构造函数使用 autowire 装配，如果不能，则尝试通过 byType 自动装配。
+
+### 
 
 # spring事务
 
