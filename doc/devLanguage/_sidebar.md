@@ -12,7 +12,7 @@
         * [集合框架](/doc/devLanguage/java/collection.md)
         * [多线程](/doc/devLanguage/java/threading.md)
         * [jvm](/doc/devLanguage/java/jvm.md)
-        * [设计模式](/doc/frame/DesignPattern.md)    
+        * [IO](/doc/devLanguage/java/IO.md)   
     * Python
         * [常用工具包]()
         * [自制小工具]()
