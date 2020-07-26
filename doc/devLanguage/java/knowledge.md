@@ -447,4 +447,25 @@ JAVA反射机制是在运行状态中，对于任意一个类，都能够知道�
 6. Matching 做匹配，allMatch，anyMatch，noneMatch 返回值为Boolean，判断流中是否有我们想要的元素
 7. find 查找元素，findFirst串行流和并行流都是首元素  findAny并行流获取到的可能不是首元素
 
-instream IntSummaryStatic，对流进行分析
+instream 方法summaryStatistics，对流进行分析
+
+### 中间操作
+
+- filter	条件过滤
+- distinct  去重先比较hashcode，然后使用equles，需要重写两个方法
+- sorted  排序根据对应的类实现的comparaable接口进行排序，需要实现Comparable接口，或者传入自定义比较规则
+- limit&skip 从0位置开始截取流中指定数量的数据，skip指从0位置开始跳过指定数量的数据
+- map对流中的数据进行映射，用新的数据替换旧的数据
+- flatmap 扁平化映射，一般用于map映射完成后流中的数据是一个容器，需要对容器中的数据进行处理，扁平化处理，可以将集合中的容器数据直接读到流中
+
+### Collectors工具类
+
+Collectors.toList（），Collectors.toSet（），Collectors.toMap（）
+
+maxBy（）找到流中最大的元素，等同于max
+
+joining（）将字符串拼接，可以传入分隔符，前缀和尾缀，只适用于Stream<String>
+
+summingInt 将流中的数据映射成intstream，并求和 
+
+averagingInt（），aummarizingInt

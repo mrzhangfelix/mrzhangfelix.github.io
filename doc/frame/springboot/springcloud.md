@@ -12,7 +12,27 @@
 
 ## 什么是Spring Cloud
 
-Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、智能路由、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。Spring Cloud并没有重复制造轮子，它只是将各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。
+微服务架构的落地的一套技术栈。
+
+Spring Cloud是一系列框架的有序集合。
+
+它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、智能路由、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。
+
+Spring Cloud并没有重复制造轮子，它只是将各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。
+
+大多数技术是基于Netflix公司的技术
+
+## 微服务架构
+
+1. 微服务架构是一种样式是一种风格一种思想
+2. 将一个完成的项目，拆分成多个模块去开发
+3. 每一个模块都是运行在自己的容器中
+4. 每一个模块都是需要相互通讯的，HTTP，RPC，MQ
+5. 每一个模块之间是没有依赖关系的，单独的部署
+6. 可以使用多种语言去开发
+7. 可以使用多种数据库
+
+> 将复杂臃肿的单体应用进行细粒度的划分，每个拆分出来的服务各自打包部署。
 
 # 设计目标与优缺点
 
@@ -48,73 +68,32 @@ Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便
 
 # 主要项目
 
-- Spring Cloud Config
+Spring Cloud Netflix
 
-  集中配置管理工具，分布式系统中统一的外部配置管理，默认使用Git来存储配置，可以支持客户端配置的刷新及加密、解密操作。
+Netflix OSS 开源组件集成，包括Eureka、Hystrix、Ribbon、Feign、Zuul等核心组件。
 
+1. Eureka：服务治理组件，服务注册与发现包括服务端的注册中心和客户端的服务发现机制；
+2. Ribbon：服务之间的负载均衡的服务调用组件，具有多种负载均衡调用策略；
+3. Hystrix：服务的线程隔离以及断路器。服务容错组件，实现了断路器模式，为依赖服务的出错和延迟提供了容错能力；
+4. Feign：服务之间的通讯，基于Ribbon和Hystrix的声明式服务调用组件；
+5. Zuul：API网关组件，对请求提供路由及过滤功能。
+6. Spring Cloud Sleuth Spring Cloud应用程序的分布式请求链路跟踪，支持使用Zipkin、HTrace和基于日志（例如ELK）的跟踪。
+7. Spring Cloud Stream  轻量级事件驱动微服务框架，可以使用简单的声明式模型来发送及接收消息，主要实现为Apache Kafka及RabbitMQ。
+8. Spring Cloud Config 集中配置管理工具，分布式系统中统一的外部配置管理，默认使用Git来存储配置，可以支持客户端配置的刷新及加密、解密操作。
 
+其他组件
 
-- Spring Cloud Netflix
+- Spring Cloud Bus  用于传播集群状态变化的消息总线，使用轻量级消息代理链接分布式系统中的节点，可以用来动态刷新集群中的服务配置。
+- Spring Cloud Consul  基于Hashicorp Consul的服务治理组件。
+- Spring Cloud Security 安全工具包，对Zuul代理中的负载均衡OAuth2客户端及登录认证进行支持。
 
-  Netflix OSS 开源组件集成，包括Eureka、Hystrix、Ribbon、Feign、Zuul等核心组件。
+- Spring Cloud Task 用于快速构建短暂、有限数据处理任务的微服务框架，用于向应用中添加功能性和非功能性的特性。
+- Spring Cloud Zookeeper   基于Apache Zookeeper的服务治理组件。
 
-- Eureka：服务治理组件，包括服务端的注册中心和客户端的服务发现机制；
+- Spring Cloud Gateway   API网关组件，对请求提供路由及过滤功能。
 
-- Ribbon：负载均衡的服务调用组件，具有多种负载均衡调用策略；
+- Spring Cloud OpenFeign   基于Ribbon和Hystrix的声明式服务调用组件，可以动态创建基于Spring MVC注解的接口实现用于服务调用，在Spring Cloud 2.0中已经取代Feign成为了一等公民。
 
-- Hystrix：服务容错组件，实现了断路器模式，为依赖服务的出错和延迟提供了容错能力；
-
-- Feign：基于Ribbon和Hystrix的声明式服务调用组件；
-
-- Zuul：API网关组件，对请求提供路由及过滤功能。
-
-- Spring Cloud Bus
-
-  用于传播集群状态变化的消息总线，使用轻量级消息代理链接分布式系统中的节点，可以用来动态刷新集群中的服务配置。
-
-
-
-- Spring Cloud Consul
-
-  基于Hashicorp Consul的服务治理组件。
-
-
-
-- Spring Cloud Security
-
-  安全工具包，对Zuul代理中的负载均衡OAuth2客户端及登录认证进行支持。
-
-
-
-- Spring Cloud Sleuth
-
-  Spring Cloud应用程序的分布式请求链路跟踪，支持使用Zipkin、HTrace和基于日志（例如ELK）的跟踪。
-
-
-
-- Spring Cloud Stream
-
-  轻量级事件驱动微服务框架，可以使用简单的声明式模型来发送及接收消息，主要实现为Apache Kafka及RabbitMQ。
-
-
-
-- Spring Cloud Task
-
-  用于快速构建短暂、有限数据处理任务的微服务框架，用于向应用中添加功能性和非功能性的特性。
-
-
-
-- Spring Cloud Zookeeper
-
-  基于Apache Zookeeper的服务治理组件。
-
-- Spring Cloud Gateway
-
-  API网关组件，对请求提供路由及过滤功能。
-
-- Spring Cloud OpenFeign
-
-  基于Ribbon和Hystrix的声明式服务调用组件，可以动态创建基于Spring MVC注解的接口实现用于服务调用，在Spring Cloud 2.0中已经取代Feign成为了一等公民。
 
 ## SpringBoot和SpringCloud的区别？
 
@@ -150,19 +129,121 @@ SpringBoot专注于快速、方便的开发单个微服务个体，SpringCloud�
 
 （3）服务网关,dubbo本身没有实现，只能通过其他第三方技术整合，springcloud有Zuul路由网关，作为路由服务器，进行消费者的请求分发,springcloud支持断路器，与git完美集成配置文件支持版本控制，事物总线实现配置文件的更新与服务自动装配等等一系列的微服务架构要素。
 
-## 负载平衡的意义什么？
 
-在计算中，负载平衡可以改善跨计算机，计算机集群，网络链接，中央处理单元或磁盘驱动器等多种计算资源的工作负载分布。负载平衡旨在优化资源使用，最大化吞吐量，最小化响应时间并避免任何单一资源的过载。使用多个组件进行负载平衡而不是单个组件可能会通过冗余来提高可靠性和可用性。负载平衡通常涉及专用软件或硬件，例如多层交换机或域名系统服务器进程。
 
-## 什么是 Hystrix 断路器？我们需要它吗？
 
-由于某些原因，employee-consumer 公开服务会引发异常。在这种情况下使用Hystrix 我们定义了一个回退方法。如果在公开服务中发生异常，则回退方法返回一些默认值。
 
 ## Spring Cloud Bus
 
 提供了跨多个实例刷新配置的功能。因此，在上面的示例中，如果我们刷新 Employee Producer1，则会自动刷新所有其他必需的模块。如果我们有多个微服务启动并运行，这特别有用。这是通过将所有微服务连接到单个消息代理来实现的。无论何时刷新实例，此事件都会订阅到侦听此代理的所有微服务，并且它们也会刷新。可以通过使用端点/总线/刷新来实现对任何单个实例的刷新。
 
-## Spring Cloud断路器的作用
+
+
+
+
+
+
+## 什么是Spring Cloud Gateway?
+
+Spring Cloud Gateway是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常作用，网关常见的功能有路由转发、权限校验、限流控制等作用。
+
+使用了一个RouteLocatorBuilder的bean去创建路由，除了创建路由RouteLocatorBuilder可以让你添加各种predicates和filters，predicates断言的意思，顾名思义就是根据具体的请求的规则，由具体的route去处理，filters是各种过滤器，用来对请求做各种判断和修改。
+
+
+
+
+
+# 服务注册与发现
+
+## Eureka的快速入门
+
+
+
+## Eureka的安全性
+
+引入sercuity组件
+
+## 高可用
+
+部署两台eureka，把服务注册到两台eureka，让eureka之间相互通讯
+
+## 细节
+
+1、EurekaClient启动时，将自己的信息注册到RurekaServer上，EurekaServer就会存储上EurekaClient的注册信息。
+
+2、当EurekaClient调用服务时，本地没有注册信息的缓存，去EurekaServer中获取注册信息
+
+3、EurekaClient会通过心跳的方式去和EurekaServer进行连接（默认30s）超过90s没有心跳信息的话，EurekaServer就认为你宕机了
+
+4、EurekaClient会每隔30s去EurekaServer中更新本地的注册表
+
+5、Eureka的自我保护机制，统计15分钟内，如果一个服务心跳发送比例低于85%，EurekaServer就会开启自我保护机制
+
+		1. 不会从ErekaServer中移除长时间没有收到心跳的服务
+  		2. EurekaServer还是可以正常提供服务
+  		3. 网络稳定时，EurekaServer才会将自己的信息被其他节点同步过去
+
+6、CAP 一致性，可用性，分区容错性，在分布式环境下只能满足2个，分区容错性必须满足，Eureka是一个AP的效果，高可用的集群，集群是无中心的，会导致一定时间内数据不一致。
+
+# 服务负载均衡
+
+在计算中，负载平衡可以改善跨计算机，计算机集群，网络链接，中央处理单元或磁盘驱动器等多种计算资源的工作负载分布。负载平衡旨在优化资源使用，最大化吞吐量，最小化响应时间并避免任何单一资源的过载。使用多个组件进行负载平衡而不是单个组件可能会通过冗余来提高可靠性和可用性。负载平衡通常涉及专用软件或硬件，例如多层交换机或域名系统服务器进程。
+
+## Robbin
+
+帮助我们实现服务与服务之间的负载均衡
+
+客户端负载均衡：customer客户模块将两个信息全部拿到本地缓存，在customer中自己做一个负载均衡的策略，选中其中的一个服务
+
+服务端负载均衡：注册中信中直接根据你指定的负载均衡策略，帮你选定一个服务返回
+
+## 快速入门
+
+启动两个search模块
+
+导入Robbin依赖
+
+RestTemplate和Robbin整合在一起 @loadBalanced
+
+## Robbin配置负载均衡策略
+
+RandomRule：随机策略
+
+RoundRobinRule：轮询策略
+
+WeightedResponseTimeRule：默认采用轮询的策略，后续根据响应时间分配权重
+
+BestAcailableRule，更具被调用方并发数最小的去分配
+
+
+
+采用注解的形式：
+
+采用配置文件的形式 
+
+# 服务调用
+
+## Feign
+
+可以帮助我们实现面向接口编程，直接调用其他服务，简化开发。
+
+参数的传递方式：
+
+如果你传递的参数比较复杂时，默认会采用POST的请求方式
+
+传递单个参数时，推荐使用@PathVariable
+
+## Feign fallback
+
+可以帮助我们使用Feign去调用另一个服务时如果出现了问题，走服务降级，返回一个错误数据，避免因为一个服务出现问题。
+
+调用方无法知道具体的错误是什么，通过实现FallBackFactory接口的方式去实现这个功能。
+
+# 服务的隔离与熔断
+
+## Hystrix 断路器
+
+由于某些原因，employee-consumer 公开服务会引发异常。在这种情况下使用Hystrix 我们定义了一个回退方法。如果在公开服务中发生异常，则回退方法返回一些默认值。
 
 当一个服务调用另一个服务由于网络原因或自身原因出现问题，调用者就会等待被调用者的响应 当更多的服务请求到这些资源导致更多的请求等待，发生连锁效应（雪崩效应）
 
@@ -172,7 +253,54 @@ SpringBoot专注于快速、方便的开发单个微服务个体，SpringCloud�
 
 关闭：当服务一直处于正常状态 能正常调用
 
-## 什么是Spring Cloud Config?
+
+
+Hystrix主要时为了解决服务雪崩问题
+
+1、降级机制：当你的一个服务出现的超时，资源不足出现一个异常的时候，可以执行一个降级方法返回一个托底数据
+
+2、隔离：提供了一个Hystrix线程池，信号量，和容器的线程池相互隔离
+
+	- Hystrix线程池，接收业务请求用tomcat线程池，执行任务用Hystrix的线程池
+	- 使用信号量，管理容器的线程池。 接受请求需要通过信号量的控制决定
+
+3、熔断：当你的某一个服务失败率达到一定的阈值时，会自动触发降级
+
+​		断路器的监控界面
+
+4、缓存：请求缓存的功能
+
+​		请求缓存声明周期时一次请求
+
+​		
+
+# 服务网关
+
+## ZUUL
+
+实现灰度发布，指定版本访问
+
+自定义服务配置
+
+zuul的过滤器实现
+
+实现服务降级
+
+动态路由，通过redis设置路由信息
+
+
+
+## 多语言支持-sidecar
+
+需要接入一些非Java的程序，第三方接口无法接入eureka，hystrix，feign等等组件。启动一个代理的微服务，代理微服务去和非Java的程序交流
+
+## 消息组件
+
+Stream
+
+# 服务动态配置
+
+## Config?
 
 在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在spring cloud config 组件中，分两个角色，一是config server，二是config client。
 
@@ -184,8 +312,15 @@ SpringBoot专注于快速、方便的开发单个微服务个体，SpringCloud�
 
 （3）启动类添加注解@EnableConfigServer
 
-## 什么是Spring Cloud Gateway?
 
-Spring Cloud Gateway是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常作用，网关常见的功能有路由转发、权限校验、限流控制等作用。
 
-使用了一个RouteLocatorBuilder的bean去创建路由，除了创建路由RouteLocatorBuilder可以让你添加各种predicates和filters，predicates断言的意思，顾名思义就是根据具体的请求的规则，由具体的route去处理，filters是各种过滤器，用来对请求做各种判断和修改。
+# 服务追踪
+
+Sleuth:整个微服务架构中，一个请求可能需要调用很多很多的服务员，最终才能完成一个功能
+
+可以获取到整个服务链路信息
+
+可以通过图形化界面查看，zipkin
+
+日志信息可以存储到数据库中
+
