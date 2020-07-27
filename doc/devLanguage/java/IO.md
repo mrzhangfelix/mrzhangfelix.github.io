@@ -1,9 +1,18 @@
 ## IO
 
+## 流
 
+内存与存储设备之间的传输数据的通道
 
-- InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
-- OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
+按方向分：
+
+- InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。方法read
+
+- OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。方法write
+
+  
+
+  按单位：字节流和字符流
 
 File对象本身可以是目录。
 调用file.mkdirs()即可创建目录。
@@ -16,11 +25,64 @@ File对象本身可以是目录。
 - 用字符串作为输入源的是？————StringBufferInputStream
 - 用于多线程之间管道通信的输入源是————PipeInputStream
 
+BufferedInputStream字节缓冲流，将字节流传入缓冲流，减少磁盘的的访问次数
+
+BufferedReder字符缓冲流，高效读取，支持换行符，可以读取一行写一行
+
+> 使用FileReader和FileWriter复制文本文件，不能复制图片和二进制文件
+>
+> 使用字节流能复制任意文件。
+
+InputStreamReader/OutputStreamWriter，桥转换流
+
+字节流和字符流的转化，硬盘上是字节流，内存中是字符
+
+
+
+## 序列化与反序列化
+
+将对象写入流中
+
+使用ObjectOutputStream
+
+> 注意事项：
+>
+> 实现序列化接口的类才能序列化，serializable，只是标志该类可以序列化。
+>
+> 序列化中的属性也要求实现序列化接口。
+>
+> 序列化版本号ID，保证序列化的类和反序列化的类是一个类
+>
+> 使用transient（瞬时的）修饰的属性不能被序列化
+>
+> 静态属性不能被序列化
+>
+> 序列化多个对象
+
+是由ObjectInputStream实现反序列化。
+
+## Properties
+
+继承HashTable
+
+流操作：
+
+> list列表方法用来打印流。
+>
+> store保存方法
+>
+> load方法加载
+
+
+
+## 三种IO
+
 BIO：Block IO 同步阻塞式 IO，就是我们平常使用的传统 IO，它的特点是模式简单使用方便，并发处理能力低。
 
 阻塞：一个线程读操作的时候不能去做其他操作。
 
 NIO：Non IO 同步非阻塞 IO，是传统 IO 的升级，客户端和服务器端通过 Channel（通道）通讯，实现了多路复用。
+
 AIO：Asynchronous IO 是 NIO 的升级，也叫 NIO2，实现了异步非堵塞 IO ，异步 IO 的操作基于事件和回调机制。
 
 

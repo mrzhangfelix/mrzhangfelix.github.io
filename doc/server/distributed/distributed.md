@@ -40,7 +40,9 @@
 | Availability（可用性）            | 指系统提供的服务必须一直处于可用的状态，每次请求都能获取到非错的响应（不保证获取的数据为最新数据） |
 | Partition tolerance（分区容错性） | 分布式系统在遇到任何网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务，除非整个网络环境都发生了故障 |
 
-Spring Cloud在CAP法则上主要满足的是A和P法则，Dubbo和Zookeeper在CAP法则主要满足的是C和P法则
+Spring Cloud在CAP法则上主要满足的是A和P法则，
+
+Dubbo和Zookeeper在CAP法则主要满足的是C和P法则
 
 ## BASE理论
 
