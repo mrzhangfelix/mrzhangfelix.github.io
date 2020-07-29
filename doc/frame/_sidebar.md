@@ -7,7 +7,7 @@
 * [常用框架](/doc/frame/)
     * Spring
         * [基本概念](/doc/frame/spring/spring.md)
-        * [springMVC](/doc/frame/spring/springMVC.md)
+        * [springMVC](/doc/frame/spring/SpringMVC.md)
     * Springboot
         * [基本概念](/doc/frame/springboot/springboot.md)
         * [SpringScurity](/doc/frame/springboot/springsecurity.md)
