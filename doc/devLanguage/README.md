@@ -1,4 +1,3 @@
-<div align=center><img src="./img/admire.png" width=220/></div>
 
 * [开发语言](/doc/devLanguage/)
     * Markdown
@@ -10,7 +9,5 @@
         * [集合框架](/doc/devLanguage/java/collection.md)
         * [多线程](/doc/devLanguage/java/threading.md)
         * [jvm](/doc/devLanguage/java/jvm.md)
-        * [设计模式](/doc/frame/DesignPattern.md)    
-    * Python
-        * [常用工具包]()
-        * [自制小工具]()
+        * [IO](/doc/devLanguage/java/IO.md)   
+        * [网络编程](/doc/devLanguage/java/socket.md)   

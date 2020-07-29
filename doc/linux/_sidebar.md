@@ -8,5 +8,5 @@
 * [三方服务](/doc/server/)
 
 * [Linux](/doc/linux/)
-    * [概述](/doc/linux/linux.md)
-    * [常用命令](/doc/linux/cmd.md)
+    * [概述](/doc/linux/linux/linux.md)
+    * [常用命令](/doc/linux/linux/cmd.md)

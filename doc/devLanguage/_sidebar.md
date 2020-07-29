@@ -13,9 +13,7 @@
         * [多线程](/doc/devLanguage/java/threading.md)
         * [jvm](/doc/devLanguage/java/jvm.md)
         * [IO](/doc/devLanguage/java/IO.md)   
-    * Python
-        * [常用工具包]()
-        * [自制小工具]()
+        * [网络编程](/doc/devLanguage/java/socket.md)   
         
 * [常用框架](/doc/frame/)
         

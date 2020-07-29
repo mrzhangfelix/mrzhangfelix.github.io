@@ -469,3 +469,9 @@ joining（）将字符串拼接，可以传入分隔符，前缀和尾缀，只�
 summingInt 将流中的数据映射成intstream，并求和 
 
 averagingInt（），aummarizingInt
+
+
+
+## 内部类
+
+内部类中使用的局部变量必须为final

@@ -40,7 +40,7 @@ Map接口和Collection接口是所有集合框架的父接口：
 Collection接口的子接口包括：Set接口和List接口
 Map接口的实现类主要有：HashMap、TreeMap、Hashtable、ConcurrentHashMap以及Properties等
 Set接口的实现类主要有：HashSet、TreeSet、LinkedHashSet等
-List接口的实现类主要有：ArrayList、LinkedList、Stack以及Vector等
+List接口的实现类主要有：ArrayList、LinkedList、Stack以及Vector等CopyonWriteArrayList
 
 ## 集合框架底层数据结构
 
@@ -50,7 +50,7 @@ List
 Arraylist： Object数组
 Vector： Object数组
 LinkedList： 双向循环链表
-CopyonWriteArrayList：写时复制List
+CopyonWriteArrayList：写时复制List 读多写少且脏数据影响不大的并发情况下，选择CopyOnWriteArrayList
 
 Set
 HashSet（无序，唯一）：基于 HashMap 实现的，底层采用 HashMap 来保存元素
