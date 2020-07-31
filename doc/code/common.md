@@ -17,7 +17,7 @@
         add("a");
         add("b");
     }};
-    Map<String, Object> map = new HashMap<>() {{
+    Map<String, String> map = new HashMap<>() {{
         put("key", "value");
         put("key2", "value2");
     }};
