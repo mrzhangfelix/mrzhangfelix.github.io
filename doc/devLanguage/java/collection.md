@@ -104,6 +104,7 @@ ArrayList的优点如下：
 
 ArrayList 底层以数组实现，是一种随机访问模式。ArrayList 实现了 RandomAccess 接口，因此查找的时候非常快。
 ArrayList 在顺序添加一个元素的时候非常方便。
+
 ArrayList 的缺点如下：
 
 删除元素的时候，需要做一次元素复制操作。如果要复制的元素很多，那么就会比较耗费性能。
