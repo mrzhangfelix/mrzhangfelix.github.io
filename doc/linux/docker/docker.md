@@ -215,6 +215,6 @@ docker run -itd --name redis-test -p 6379:6379 redis
 
 ### docker 安装rabbitmq
 
-docker pull rabbitmq：3-management
+docker pull rabbitmq:3-management
 
 docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq01 rabbitmq 

@@ -472,6 +472,22 @@ averagingInt（），aummarizingInt
 
 
 
-## 内部类
+# java9新特性
 
-内部类中使用的局部变量必须为final
+## **模块系统**：
+
+模块是一个包的容器，Java 9 最大的变化之一是引入了模块系统（Jigsaw 项目）。
+
+ava 9 最大的变化之一是引入了模块系统（Jigsaw 项目）。
+
+模块就是代码和数据的封装体。模块的代码被组织成多个包，每个包中包含Java类和接口；模块的数据则包括资源文件和其他静态信息。
+
+Java 9 模块的重要特征是在其工件（artifact）的根目录中包含了一个描述模块的 module-info.class 文 件。 工件的格式可以是传统的 JAR 文件或是 Java 9 新增的 JMOD 文件。这个文件由根目录中的源代码文件 module-info.java 编译而来。该模块声明文件可以描述模块的不同特征。
+
+在 module-info.java 文件中，我们可以用新的关键词module来声明一个模块，如下所示。下面给出了一个模块com.mycompany.mymodule的最基本的模块声明。
+
+## REPL(Read Eval Print Loop)
+
+意为交互式的编程环境。
+
+JShell 是 Java 9 新增的一个交互式的编程环境工具。它允许你无需使用类或者方法包装来执行 Java 语句。它与 Python 的解释器类似，可以直接 输入表达式并查看其执行结果。
