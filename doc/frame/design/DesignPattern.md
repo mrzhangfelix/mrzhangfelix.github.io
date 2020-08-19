@@ -1,6 +1,12 @@
 # 架构设计
-## 请列举出在JDK中几个常用的设计模式？
-单例模式（Singleton pattern）用于Runtime，Calendar和其他的一些类中。工厂模式（Factory pattern）被用于各种不可变的类如 Boolean，像Boolean.valueOf，观察者模式（Observer pattern）被用于 Swing 和很多的事件监听中。装饰器设计模式（Decorator design pattern）被用于多个 Java IO 类中。
+## JDK中的设计模式
+单例模式（Singleton pattern）用于Runtime，Calendar和其他的一些类中。
+
+工厂模式（Factory pattern）被用于各种不可变的类如 Boolean，像Boolean.valueOf，
+
+观察者模式（Observer pattern）被用于 Swing 和很多的事件监听中。
+
+装饰器设计模式（Decorator design pattern）被用于多个 Java IO 类中。
 
 ##  设计模式原则 
 
@@ -59,7 +65,7 @@
    设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。设计模式是代码可用性的延伸
 
    设计模式分类：创建型模式，结构型模式，行为型模式
-## 静态代理、JDK动态代理以及CGLIB动态代理
+## 静态代理动态代理
 - 静态代理
 
 静态代理其实就是在程序运行之前，提前写好被代理方法的代理类，编译后运行。

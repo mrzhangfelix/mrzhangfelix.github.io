@@ -6,7 +6,7 @@
 
 </br>
 
-<font size=6 style="font-weight:bold;">docsify是一个神奇的文档网站生成工具</font>
+<font size=6 style="font-weight:bold;">个人学习笔记汇总整理</font>
 
 </br>
 

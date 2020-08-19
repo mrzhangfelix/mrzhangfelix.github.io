@@ -1,11 +1,9 @@
 ![logo](img/admire.png)
 # 我的文档网站
 ## 个人文档网站
-> 一个神奇的文档网站生成
 
-* Simple and lightweight (~12kb gzipped)
-* Multiple themes
-* Not build static html files
+
+* 805908873@qq.com
 
 [GitHub](https://github.com/mrzhangfelix/)
 [Get Started](/README)
